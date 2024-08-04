@@ -37,7 +37,9 @@ const FirstPage = () => {
     };
 
     return (
+        
         <div className="modal-container ">
+            <p className="text-danger">{message}</p>
             <div className="modal-dialog modal-dialog-centered ">
                 <div className="modal-content ">
                     <div className="modal-header">
@@ -109,10 +111,10 @@ const FirstPage = () => {
                                     value={formData.password} 
                                     required 
                                     onChange={handleChange} 
-                                    onBlur={handleSubmit}
+                                    
                                 />
                             </div>
-                            <p className="text-danger">{message}</p>
+                            
                         </form>
                     </div>
                     <div className="modal-footer">
@@ -121,7 +123,7 @@ const FirstPage = () => {
                         </Link>
                         {isSubmitted ? (
                             <Link to="/secondPage">
-                                <button type="button" className="btn btn-secondary">Next</button>
+                                <button type="button" className="btn btn-secondary" onClick={handleSubmit}>Next</button>
                             </Link>
                         ) : (
                             <button type="button" className="btn btn-secondary" disabled>Next</button>

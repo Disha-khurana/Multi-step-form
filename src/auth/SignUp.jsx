@@ -1,7 +1,34 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from './AuthContext';
 
 function SignUp(props) {
+    const{message , setMessage , register} = useContext(AuthContext);
+    const[formData , setFormData] = useState({
+        name:'',
+        email:'',
+        password:''
+    });
+
+    const handleChange = (e) =>{
+        let {name , value} = e.target;
+        setFormData((prev)=>({
+            ...prev ,
+            [name] : value,
+           
+        }))
+    }
+
+    useEffect(()=>{
+        setMessage(" ")
+     },[setMessage])
+
+     const handleRegister = (e) =>{
+           e.preventDefault();
+           register(formData);
+     }
+
+
     return (
       <div className="modal-container">
       <div className="modal-dialog modal-dialog-centered custom-modal-width">
@@ -13,22 +40,23 @@ function SignUp(props) {
                   <form>
                       <div className="mb-3">
                           <label htmlFor="name" className="form-label">Name</label>
-                          <input type="text" name="name" className="form-control" required />
+                          <input type="text" name="name" className="form-control" required onChange={handleChange} />
                       </div>
                       <div className="mb-3">
                           <label htmlFor="email" className="form-label">Email address</label>
-                          <input type="email" className="form-control" id="email" aria-describedby="emailHelp" required />
+                          <input type="email" className="form-control" name="email" aria-describedby="emailHelp" required onChange={handleChange} />
                       </div>
                       <div className="mb-3">
                           <label htmlFor="password" className="form-label">Password</label>
-                          <input type="password" className="form-control" id="password" required />
+                          <input type="password" className="form-control" name="password" required onChange={handleChange}/>
+                          <p className="text-danger">{message}</p>
                       </div>
                       <div className="form-footer">
                           <p>Back to login page? <Link to="/">Click here</Link></p>
                       </div>
-                      <Link to='/firstPage'>
-                          <button type="submit" className="btn btn-primary w-100">Sign Up</button>
-                      </Link>
+                      
+                          <button type="submit" className="btn btn-primary w-100" onClick={handleRegister}>Sign Up</button>
+                      
                   </form>
               </div>
           </div>

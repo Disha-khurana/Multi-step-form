@@ -38,7 +38,10 @@ const SecondPage = () => {
     };
 
     return (
+
+        
         <div className="modal-container">
+            <p className="text-danger">{message}</p>
             <div className="modal-dialog modal-dialog-centered custom-modal-width">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -158,7 +161,7 @@ const SecondPage = () => {
                                     onBlur={handleSubmit2}
                                 />
                             </div>
-                              <p className="text-danger">{message}</p>
+                              
                     </form>
                     <div className="modal-footer">
                         <Link to="/firstPage">

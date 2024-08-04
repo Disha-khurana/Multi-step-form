@@ -1,14 +1,28 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from './AuthContext';
 
 const Login = () => {
 
-    const { messageLogin , setMessageLogin} = useContext(AuthContext);
+    const { message , setMessage , login} = useContext(AuthContext);
+    const [formData, setFormData] = useState(null);
+
+    const handleChange = (e)=>{
+        let { name, value } = e.target;
+        setFormData((prev)=>({
+            ...prev,
+            [name]: value
+        }))
+    }
 
     useEffect(() => {
-        setMessageLogin("");
-    }, [setMessageLogin]);
+        setMessage("");
+    }, [setMessage]);
+
+    const handleLogin = (e)=>{
+        e.preventDefault();
+        login(formData);
+    }
 
 
     return (
@@ -22,17 +36,17 @@ const Login = () => {
                         <form>
                             <div className="mb-3">
                                 <label htmlFor="email" className="form-label">Email address</label>
-                                <input type="email" className="form-control" id="email" aria-describedby="emailHelp" required />
+                                <input type="email" className="form-control" name="email" aria-describedby="emailHelp" required onChange={handleChange} />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="password" className="form-label">Password</label>
-                                <input type="password" className="form-control" id="password" required />
-                                <p className="text-danger">{messageLogin}</p>
+                                <input type="password" className="form-control" name="password" required  onChange={handleChange}/>
+                                <p className="text-danger">{message}</p>
                             </div>
                             <div className="form-footer">
                                 <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
                             </div>
-                            <button type="submit" className="btn btn-primary w-100">Login</button>
+                            <button type="submit" className="btn btn-primary w-100" onClick={handleLogin}>Login</button>
                         </form>
                     </div>
                 </div>
