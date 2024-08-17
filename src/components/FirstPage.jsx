@@ -111,6 +111,7 @@ const FirstPage = () => {
                                     value={formData.password} 
                                     required 
                                     onChange={handleChange} 
+                                    onBlur={handleSubmit}
                                     
                                 />
                             </div>

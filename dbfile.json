@@ -1,6 +1,13 @@
 {
-  "login":[],
-  "step1":[],
-  "step2":[],
-  "step3":[]
+  "login": [
+    {
+      "name": "Disha",
+      "email": "khuranadisha2@gmail.com",
+      "password": "123",
+      "id": 1
+    }
+  ],
+  "step1": [],
+  "step2": [],
+  "step3": []
 }
